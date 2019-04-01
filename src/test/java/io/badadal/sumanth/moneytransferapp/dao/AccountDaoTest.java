@@ -83,7 +83,10 @@ public class AccountDaoTest {
 
     @Test
     public void return_updated_account_when_called_to_updateAccount() {
+
         //given
+        Map<Long, Account> accounts = AccountDatabase.getAccounts();
+        accounts.put(101L, new Account(101L, 500));
         Account account = new Account(101L, 700);
 
         //then
