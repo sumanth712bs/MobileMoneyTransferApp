@@ -1,7 +1,8 @@
 package io.badadal.sumanth.moneytransferapp.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import io.badadal.sumanth.moneytransferapp.model.Account;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,11 +30,11 @@ public class AccountDaoTest {
         //then
         List<Account> accountList = accountDao.getAllAccounts();
 
-        Assert.assertEquals(2, accountList.size());
-        Assert.assertEquals(500, accountList.get(0).getBalance(), 0);
-        Assert.assertEquals(1000, accountList.get(1).getBalance(), 0);
-        Assert.assertEquals(101L, accountList.get(0).getAccountId());
-        Assert.assertEquals(102L, accountList.get(1).getAccountId());
+        assertEquals(2, accountList.size());
+        assertEquals(500, accountList.get(0).getBalance(), 0);
+        assertEquals(1000, accountList.get(1).getBalance(), 0);
+        assertEquals(101L, accountList.get(0).getAccountId());
+        assertEquals(102L, accountList.get(1).getAccountId());
     }
 
 
@@ -48,8 +49,8 @@ public class AccountDaoTest {
         //then
         Account account = accountDao.getAccountById(101L);
 
-        Assert.assertEquals(101L, account.getAccountId());
-        Assert.assertEquals(500, account.getBalance(), 0);
+        assertEquals(101L, account.getAccountId());
+        assertEquals(500, account.getBalance(), 0);
 
     }
 
@@ -64,7 +65,7 @@ public class AccountDaoTest {
         //then
         Account account = accountDao.getAccountById(0L);
 
-        Assert.assertEquals(null, account);
+        assertEquals(null, account);
     }
 
     @Test
@@ -76,8 +77,8 @@ public class AccountDaoTest {
         //then
         Account newAccount = accountDao.addAccount(account);
 
-        Assert.assertEquals(101L, newAccount.getAccountId());
-        Assert.assertEquals(700, newAccount.getBalance(), 0);
+        assertEquals(101L, newAccount.getAccountId());
+        assertEquals(700, newAccount.getBalance(), 0);
     }
 
     @Test
@@ -88,10 +89,8 @@ public class AccountDaoTest {
         //then
         Account updatedAccount = accountDao.updateAccount(account);
 
-        Assert.assertEquals(101L, updatedAccount.getAccountId());
-        Assert.assertEquals(700, updatedAccount.getBalance(), 0);
+        assertEquals(101L, updatedAccount.getAccountId());
+        assertEquals(700, updatedAccount.getBalance(), 0);
 
     }
-
-
 }

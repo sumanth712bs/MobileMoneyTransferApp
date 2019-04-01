@@ -36,6 +36,10 @@ public class AccountService {
     }
 
     public Account updateAccount(Account account) {
-        return accountDao.updateAccount(account);
+        Account updatedAccount = null;
+        if (null != account && null != getAccountById(account.getAccountId())) {
+            updatedAccount = accountDao.updateAccount(account);
+        }
+        return updatedAccount;
     }
 }
