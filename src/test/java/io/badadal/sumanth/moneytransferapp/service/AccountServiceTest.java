@@ -6,13 +6,11 @@ import static org.mockito.Mockito.when;
 
 import io.badadal.sumanth.moneytransferapp.dao.AccountDao;
 import io.badadal.sumanth.moneytransferapp.model.Account;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
@@ -85,16 +83,16 @@ public class AccountServiceTest {
     public void return_first_newly_created_account_when_called_to_addAccount() {
 
         //given
-        Account account = new Account(101L, 200);
+        Account account = new Account(11L, 200);
 
         //when
-        Mockito.when(accountDao.getAllAccounts()).thenReturn(Collections.emptyList());
-        Mockito.when(accountDao.addAccount(Matchers.any())).thenReturn(account);
+        when(accountDao.getAllAccounts()).thenReturn(Collections.emptyList());
+        when(accountDao.addAccount(Matchers.any())).thenReturn(account);
 
         //then
         Account actualAccount = accountService.addAccount(account);
-        Assert.assertEquals(101L, actualAccount.getAccountId());
-        Assert.assertEquals(200, actualAccount.getBalance(), 0);
+        assertEquals(101L, actualAccount.getAccountId());
+        assertEquals(200, actualAccount.getBalance(), 0);
     }
 
 
@@ -105,13 +103,13 @@ public class AccountServiceTest {
         Account account = new Account(500L, 1000);
 
         //when
-        Mockito.when(accountDao.getAllAccounts()).thenReturn(Stream.of(account).collect(Collectors.toList()));
-        Mockito.when(accountDao.addAccount(Matchers.any())).thenReturn(account);
+        when(accountDao.getAllAccounts()).thenReturn(Stream.of(account).collect(Collectors.toList()));
+        when(accountDao.addAccount(Matchers.any())).thenReturn(account);
 
         //then
         Account actualAccount = accountService.addAccount(account);
-        Assert.assertEquals(501L, actualAccount.getAccountId());
-        Assert.assertEquals(1000, actualAccount.getBalance(), 0);
+        assertEquals(501L, actualAccount.getAccountId());
+        assertEquals(1000, actualAccount.getBalance(), 0);
     }
 
     @Test
@@ -121,13 +119,13 @@ public class AccountServiceTest {
         Account updateAccount = new Account(500L, 200);
 
         //when
-        Mockito.when(accountDao.getAccountById(500L)).thenReturn(account);
-        Mockito.when(accountDao.updateAccount(Matchers.any())).thenReturn(updateAccount);
+        when(accountDao.getAccountById(500L)).thenReturn(account);
+        when(accountDao.updateAccount(Matchers.any())).thenReturn(updateAccount);
 
         //then
         Account actualAccount = accountService.updateAccount(updateAccount);
-        Assert.assertEquals(500L, actualAccount.getAccountId());
-        Assert.assertEquals(200, actualAccount.getBalance(), 0);
+        assertEquals(500L, actualAccount.getAccountId());
+        assertEquals(200, actualAccount.getBalance(), 0);
     }
 
     @Test
@@ -136,10 +134,10 @@ public class AccountServiceTest {
         Account updateAccount = new Account(500L, 200);
 
         //when
-        Mockito.when(accountDao.getAccountById(500L)).thenReturn(null);
+        when(accountDao.getAccountById(500L)).thenReturn(null);
         //then
         Account actualAccount = accountService.updateAccount(updateAccount);
 
-        Assert.assertEquals(null, actualAccount);
+        assertEquals(null, actualAccount);
     }
 }
