@@ -4,7 +4,7 @@
 Details of the Application is present in Wiki page https://github.com/sumanth712bs/MobileMoneyTransferApp/wiki
 
 
-Steps to Run Application:
+**Steps to Run Application: **
 
 mvn clean install
 
@@ -13,6 +13,10 @@ mvn clean install
 Once Application started, Use below Endpoints
 
 To Add New Account -> POST ->  http://localhost:8080/MobileMoneyTransferApp/webapi/account
+
+Headers -> Content-Type : application/json and Body = 
+
+`{ "accountId": 102, "balance": 500}`
 
 To Get All Accounts -> GET ->  http://localhost:8080/MobileMoneyTransferApp/webapi/account
 
