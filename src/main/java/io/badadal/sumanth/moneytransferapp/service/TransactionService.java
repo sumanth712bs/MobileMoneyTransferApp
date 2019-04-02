@@ -37,13 +37,8 @@ public class TransactionService {
         return newTransaction;
     }
 
-    public Transaction updateTransaction(Transaction transaction) {
-        return transactionDao.updateTransaction(transaction);
-    }
-
-
     public Transaction deposit(Long accountId, double depositAmount) {
-        Transaction newTransaction;
+        Transaction newTransaction = null;
         newTransaction = transferService.deposit(accountId, depositAmount);
         if (null != newTransaction) {
             addNewTransaction(newTransaction);
@@ -52,8 +47,7 @@ public class TransactionService {
     }
 
     public Transaction withdraw(Long accountId, double amount) {
-
-        Transaction newTransaction;
+        Transaction newTransaction = null;
         newTransaction = transferService.withdraw(accountId, amount);
         if (null != newTransaction) {
             addNewTransaction(newTransaction);

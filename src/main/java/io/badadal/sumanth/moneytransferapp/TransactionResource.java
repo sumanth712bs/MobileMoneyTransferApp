@@ -44,12 +44,6 @@ public class TransactionResource {
         return transactionService.addNewTransaction(transaction);
     }
 
-
-    @PUT
-    public Transaction updateTransaction(Transaction transaction) {
-        return transactionService.updateTransaction(transaction);
-    }
-
     @POST
     @Path("/deposit")
     public Transaction depositMoney(

@@ -25,16 +25,16 @@ public class TransferService implements AbstractTransferService {
                     && isAccountPresent.test(to);
 
     private LongFunction<Account> getAccountById = accountId -> accountDao.getAccountById(accountId);
-    private BiPredicate<Account, Double> checkIfSufficientAmountisPresent = (account, amount) -> amount > 0
+    private BiPredicate<Account, Double> checkIfSufficientAmountIsPresent = (account, amount) -> amount > 0
             && amount <= account.getBalance();
 
 
     private Predicate<Long> isValidAccount = accountId -> accountDao.getAllAccounts().stream()
             .anyMatch(account -> accountId.equals(account.getAccountId()));
 
-    private Predicate<Double> isValidAmountToDeposit = amount -> amount > -1;
+    private Predicate<Double> isValidAmountToDeposit = amount -> amount > 0;
 
-    private BiPredicate<Double, Double> isValidAmountToWithdraw = (balance, amount) -> amount > -1 && amount <= balance;
+    private BiPredicate<Double, Double> isValidAmountToWithdraw = (balance, amount) -> amount > 0 && amount <= balance;
 
     private Function<Long, Double> getBalanceFromAccountId =
             accountId -> accountDao.getAccountById(accountId).getBalance();
@@ -58,7 +58,7 @@ public class TransferService implements AbstractTransferService {
         boolean accountsPresent = isBothAccountPresent.test(transaction.getFromAccountId(),
                 transaction.getToAccountId());
         if (accountsPresent) {
-            boolean isSufficientAmountPresent = checkIfSufficientAmountisPresent
+            boolean isSufficientAmountPresent = checkIfSufficientAmountIsPresent
                     .test(getAccountById.apply(transaction.getFromAccountId()), transaction.getTransferAmount());
             if (isSufficientAmountPresent) {
                 int transactionCount = transactionDao.getAllTransactions().size();

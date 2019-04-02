@@ -1,6 +1,7 @@
 package io.badadal.sumanth.moneytransferapp.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 import io.badadal.sumanth.moneytransferapp.dao.TransactionDao;
@@ -47,7 +48,7 @@ public class DepositServiceTest {
         assertEquals(1001L, actualTransaction.getTransactionId(), 0);
         assertEquals(101L, actualTransaction.getFromAccountId(), 0);
         assertEquals(null, actualTransaction.getToAccountId());
-        assertEquals(1000L, actualTransaction.getTransferAmount(), 0);
+        assertEquals(1000, actualTransaction.getTransferAmount(), 0);
         assertEquals(TransactionType.DEPOSIT, actualTransaction.getTransactionType());
     }
 
@@ -68,8 +69,8 @@ public class DepositServiceTest {
         Transaction actualTransaction = depositService.transferMoney(transaction);
         assertEquals(23L, actualTransaction.getTransactionId(), 0);
         assertEquals(101L, actualTransaction.getFromAccountId(), 0);
-        assertEquals(null, actualTransaction.getToAccountId());
-        assertEquals(1000L, actualTransaction.getTransferAmount(), 0);
+        assertNull(actualTransaction.getToAccountId());
+        assertEquals(1000, actualTransaction.getTransferAmount(), 0);
         assertEquals(TransactionType.DEPOSIT, actualTransaction.getTransactionType());
 
     }
