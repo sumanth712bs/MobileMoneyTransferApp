@@ -4,7 +4,7 @@
 Details of the Application is present in Wiki page https://github.com/sumanth712bs/MobileMoneyTransferApp/wiki
 
 
-**Steps to Run Application: **
+**Steps to Run Application**
 
 mvn clean install
 
