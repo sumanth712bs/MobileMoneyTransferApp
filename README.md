@@ -12,7 +12,9 @@ mvn clean install
 Once Application started, Use below Endpoints
 
 To Add New Account -> POST ->  http://localhost:8080/MobileMoneyTransferApp/webapi/account
+
 To Get All Accounts -> GET ->  http://localhost:8080/MobileMoneyTransferApp/webapi/account
+
 To Get Account BY ID -> GET ->  http://localhost:8080/MobileMoneyTransferApp/webapi/account/{accountId}
 
 **To Deposit or to Withdraw money from created account**
@@ -28,6 +30,7 @@ eg:  http://localhost:8080/MobileMoneyTransferApp/webapi/transaction/withdraw?ac
 
 To Create new Transaction -> POST ->  http://localhost:8080/MobileMoneyTransferApp/webapi/transaction
 Headers -> Content-Type : application/json and Body = 
+
 `{ "fromAccountId": 103, "toAccountId": 104, "transactionId": 1001, "transferAmount": 100 }`
 
 To Get All Transactions -> GET ->  http://localhost:8080/MobileMoneyTransferApp/webapi/transaction
