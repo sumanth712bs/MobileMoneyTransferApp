@@ -7,6 +7,7 @@ Details of the Application is present in Wiki page https://github.com/sumanth712
 Steps to Run Application:
 
 mvn clean install
+
 **mvn tomcat7:run**
 
 Once Application started, Use below Endpoints
