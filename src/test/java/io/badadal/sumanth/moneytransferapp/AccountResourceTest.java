@@ -43,13 +43,4 @@ public class AccountResourceTest extends JerseyTest {
         Assert.assertEquals("Should return 200 status", 200, response.getStatus());
         Assert.assertNotNull("Should return new Account", response.getEntity());
     }
-
-
-    @Test
-    public void shouldNotReturnAccountWith204Status() {
-        //then
-        Response response = target("/account/101").request().get();
-
-        Assert.assertEquals("Should return 204 status", 204, response.getStatus());
-    }
 }
