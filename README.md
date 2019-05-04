@@ -1,5 +1,7 @@
 # MobileMoneyTransferApp
 
+[![Build Status](https://travis-ci.org/sumanth712bs/MobileMoneyTransferApp.svg?branch=master)](https://travis-ci.org/sumanth712bs/MobileMoneyTransferApp)
+
 
 Details of the Application is present in Wiki page https://github.com/sumanth712bs/MobileMoneyTransferApp/wiki
 
