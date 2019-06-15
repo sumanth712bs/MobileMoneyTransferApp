@@ -33,16 +33,16 @@ public class AccountServiceTest {
 
     @Test
     public void return_list_of_all_Accounts_when_called_to_getAllAccounts() {
-        //given
+        // given
         Account account1 = new Account(101L, 200);
         Account account2 = new Account(102L, 400);
 
         List<Account> accounts = Stream.of(account1, account2).collect(Collectors.toList());
 
-        //when
+        // when
         when(accountDao.getAllAccounts()).thenReturn(accounts);
 
-        //then
+        // then
         List<Account> actualAccounts = accountService.getAllAccounts();
 
         assertEquals(2, actualAccounts.size());
@@ -54,17 +54,15 @@ public class AccountServiceTest {
 
     @Test
     public void return_Account_of_request_accountId_when_called_to_getAccountById() {
-        //given
+        // given
         Account account1 = new Account(101L, 200);
         Account account2 = new Account(102L, 400);
 
-        List<Account> accounts = Stream.of(account1, account2).collect(Collectors.toList());
-
-        //when
+        // when
         when(accountDao.getAccountById(101L)).thenReturn(account1);
         when(accountDao.getAccountById(102L)).thenReturn(account2);
 
-        //then
+        // then
         Account actualAccount1 = accountService.getAccountById(101L);
         Account actualAccount2 = accountService.getAccountById(102L);
 
@@ -82,31 +80,30 @@ public class AccountServiceTest {
     @Test
     public void return_first_newly_created_account_when_called_to_addAccount() {
 
-        //given
+        // given
         Account account = new Account(11L, 200);
 
-        //when
+        // when
         when(accountDao.getAllAccounts()).thenReturn(Collections.emptyList());
         when(accountDao.addAccount(Matchers.any())).thenReturn(account);
 
-        //then
+        // then
         Account actualAccount = accountService.addAccount(account);
         assertEquals(101L, actualAccount.getAccountId());
         assertEquals(200, actualAccount.getBalance(), 0);
     }
 
-
     @Test
     public void return_second_newly_created_account_when_called_to_addAccount() {
 
-        //given
+        // given
         Account account = new Account(500L, 1000);
 
-        //when
+        // when
         when(accountDao.getAllAccounts()).thenReturn(Stream.of(account).collect(Collectors.toList()));
         when(accountDao.addAccount(Matchers.any())).thenReturn(account);
 
-        //then
+        // then
         Account actualAccount = accountService.addAccount(account);
         assertEquals(501L, actualAccount.getAccountId());
         assertEquals(1000, actualAccount.getBalance(), 0);
@@ -114,15 +111,15 @@ public class AccountServiceTest {
 
     @Test
     public void return_updated_account_when_called_to_updateAccount() {
-        //given
+        // given
         Account account = new Account(500L, 1000);
         Account updateAccount = new Account(500L, 200);
 
-        //when
+        // when
         when(accountDao.getAccountById(500L)).thenReturn(account);
         when(accountDao.updateAccount(Matchers.any())).thenReturn(updateAccount);
 
-        //then
+        // then
         Account actualAccount = accountService.updateAccount(updateAccount);
         assertEquals(500L, actualAccount.getAccountId());
         assertEquals(200, actualAccount.getBalance(), 0);
@@ -130,12 +127,12 @@ public class AccountServiceTest {
 
     @Test
     public void return_null_when_invalid_account_to_be_updated() {
-        //given
+        // given
         Account updateAccount = new Account(500L, 200);
 
-        //when
+        // when
         when(accountDao.getAccountById(500L)).thenReturn(null);
-        //then
+        // then
         Account actualAccount = accountService.updateAccount(updateAccount);
 
         assertEquals(null, actualAccount);
